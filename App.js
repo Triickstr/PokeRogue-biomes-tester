@@ -1,62 +1,86 @@
-import React, { useEffect, useState } from 'react';
+const BIOME_IMAGE_PATH = 'biomeimages/';
+const REFRESH_INTERVAL = 5000; // 5 seconds
+let biomesData = {};
 
-const biomeImagesPath = './biomeimages/';
+async function loadBiomesData() {
+    const response = await fetch('Biomes.json');
+    biomesData = await response.json();
+}
 
-const fetchGameInfo = () => {
-    const pokerogueTabs = Array.from(window.open('', '_self').parent.frames).filter(f => f.window && f.window.gameInfo);
-    if (pokerogueTabs.length > 0) {
-        return pokerogueTabs[0].window.gameInfo;
+function createBiomeCard(biome, odds) {
+    const card = document.createElement('div');
+    card.className = 'biome-card';
+
+    const img = document.createElement('img');
+    img.src = `${BIOME_IMAGE_PATH}en_${biome.toLowerCase().replace(/ /g, '_')}.png`;
+    img.alt = biome;
+
+    const name = document.createElement('div');
+    name.className = 'biome-name';
+    name.textContent = biome;
+
+    const chance = document.createElement('div');
+    chance.className = 'biome-odds';
+    chance.textContent = `${odds}%`;
+
+    card.appendChild(img);
+    card.appendChild(name);
+    card.appendChild(chance);
+
+    return card;
+}
+
+function updateBiomeDisplay() {
+    const app = document.getElementById('app');
+    app.innerHTML = '';
+
+    const gameInfo = window.gameInfo;
+    if (!gameInfo) {
+        app.textContent = 'Waiting for game data...';
+        return;
     }
-    return null;
-};
 
-const BiomeTracker = ({ biomes }) => {
-    const [currentBiome, setCurrentBiome] = useState('');
-    const [wave, setWave] = useState(0);
-    const [nextBiomes, setNextBiomes] = useState([]);
+    const currentBiome = gameInfo.biome;
+    const currentWave = gameInfo.wave;
+    const isRandomWave = (currentWave % 100 >= 46 && currentWave % 100 <= 50) || (currentWave % 100 >= 96 || currentWave % 100 === 0);
 
-    const updateBiomeInfo = () => {
-        const gameInfo = fetchGameInfo();
-        if (gameInfo) {
-            const biome = gameInfo.biome;
-            const waveNumber = gameInfo.wave;
-            setCurrentBiome(biome);
-            setWave(waveNumber);
+    const currentBiomeContainer = document.createElement('div');
+    currentBiomeContainer.className = 'current-biome';
 
-            if (waveNumber % 100 >= 96 || (waveNumber % 100 >= 46 && waveNumber % 100 <= 50)) {
-                setNextBiomes([{ name: 'Random', odds: 100 }]);
-            } else {
-                const possibleBiomes = biomes[biome] || [];
-                setNextBiomes(possibleBiomes);
+    const biomeImg = document.createElement('img');
+    biomeImg.src = `${BIOME_IMAGE_PATH}en_${currentBiome.toLowerCase().replace(/ /g, '_')}.png`;
+    biomeImg.alt = currentBiome;
+
+    const biomeName = document.createElement('div');
+    biomeName.textContent = `Current Biome: ${currentBiome}`;
+
+    currentBiomeContainer.appendChild(biomeImg);
+    currentBiomeContainer.appendChild(biomeName);
+
+    const possibleBiomesContainer = document.createElement('div');
+    possibleBiomesContainer.className = 'possible-biomes';
+
+    if (isRandomWave) {
+        possibleBiomesContainer.appendChild(createBiomeCard('Random', 100));
+    } else {
+        const nextBiomes = biomesData[currentBiome];
+        if (nextBiomes) {
+            for (const [nextBiome, odds] of Object.entries(nextBiomes)) {
+                possibleBiomesContainer.appendChild(createBiomeCard(nextBiome, odds));
             }
+        } else {
+            possibleBiomesContainer.textContent = 'No biome data available.';
         }
-    };
+    }
 
-    useEffect(() => {
-        updateBiomeInfo();
-        const interval = setInterval(updateBiomeInfo, 5000);
-        return () => clearInterval(interval);
-    }, []);
+    app.appendChild(currentBiomeContainer);
+    app.appendChild(possibleBiomesContainer);
+}
 
-    return (
-        <div className="p-4 flex">
-            <div className="w-1/3 flex flex-col items-center">
-                <img src={`${biomeImagesPath}en_${currentBiome.toLowerCase().replace(/\s/g, '_')}.png`} 
-                     alt={currentBiome} className="w-32 h-32" />
-                <h2 className="text-xl font-bold mt-2">{currentBiome}</h2>
-            </div>
-            <div className="w-2/3 grid grid-cols-3 gap-4">
-                {nextBiomes.map((b, idx) => (
-                    <div key={idx} className="flex flex-col items-center">
-                        <img src={`${biomeImagesPath}en_${b.name.toLowerCase().replace(/\s/g, '_')}.png`} 
-                             alt={b.name} className="w-24 h-24" />
-                        <span className="text-md mt-1">{b.name}</span>
-                        <span className="text-sm text-gray-500">{b.odds}%</span>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
+async function initApp() {
+    await loadBiomesData();
+    updateBiomeDisplay();
+    setInterval(updateBiomeDisplay, REFRESH_INTERVAL);
+}
 
-export default BiomeTracker;
+document.addEventListener('DOMContentLoaded', initApp);
