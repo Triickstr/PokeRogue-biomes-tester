@@ -1,0 +1,205 @@
+{
+  "biomes": {
+    "Town": {
+      "nextBiomes": [
+        { "biome": "Plains", "chance": 1 }
+      ]
+    },
+    "Plains": {
+      "nextBiomes": [
+        { "biome": "Grassy Fields", "chance": 0.33 },
+        { "biome": "Metropolis", "chance": 0.33 },
+        { "biome": "Lake", "chance": 0.33 }
+      ]
+    },
+	"Grassy Fields": {
+      "nextBiomes": [
+        { "biome": "Tall Grass", "chance": 1 }
+      ]
+    },
+	"Metropolis": {
+      "nextBiomes": [
+        { "biome": "Slum", "chance": 1 }
+      ]
+    },
+    "Lake": {
+      "nextBiomes": [
+        { "biome": "Beach", "chance": 0.33 },
+        { "biome": "Swamp", "chance": 0.33 },
+        { "biome": "Construction Site", "chance": 0.33 }
+      ]
+    },
+	"Tall Grass": {
+      "nextBiomes": [
+        { "biome": "Forest", "chance": 0.50 },
+        { "biome": "Cave", "chance": 0.50 }
+      ]
+    },
+	"Slum": {
+      "nextBiomes": [
+        { "biome": "Construction Site", "chance": 0.50 },
+        { "biome": "Swamp", "chance": 0.50 }
+      ]
+    },
+	"Beach": {
+      "nextBiomes": [
+        { "biome": "Sea", "chance": 0.75 },
+        { "biome": "Island", "chance": 0.25 }
+      ]
+    },
+	"Swamp": {
+      "nextBiomes": [
+        { "biome": "Graveyard", "chance": 0.50 },
+        { "biome": "Tall Grass", "chance": 0.50 }
+      ]
+    },
+	"Construction Site": {
+      "nextBiomes": [
+        { "biome": "Power Plant", "chance": 0.75 },
+        { "biome": "Dojo", "chance": 0.25 }
+      ]
+    },
+	"Forest": {
+      "nextBiomes": [
+        { "biome": "Jungle", "chance": 0.50 },
+        { "biome": "Meadow", "chance": 0.50 }
+      ]
+    },
+	"Cave": {
+      "nextBiomes": [
+        { "biome": "Badlands", "chance": 0.42 },
+        { "biome": "Lake", "chance": 0.33 },
+        { "biome": "Laboratory", "chance": 0.17 }
+      ]
+    },
+	"Sea": {
+      "nextBiomes": [
+        { "biome": "Seabed", "chance": 0.50 },
+        { "biome": "Ice Cave", "chance": 0.50 }
+      ]
+    },
+	"Island": {
+      "nextBiomes": [
+        { "biome": "Sea", "chance": 1.00 }
+      ]
+    },
+	"Graveyard": {
+      "nextBiomes": [
+        { "biome": "Abyss", "chance": 1.00 }
+      ]
+    },
+	"Power Plant": {
+      "nextBiomes": [
+        { "biome": "Factory", "chance": 1.00 }
+      ]
+    },
+	"Dojo": {
+      "nextBiomes": [
+        { "biome": "Plains", "chance": 0.58 },
+        { "biome": "Jungle", "chance": 0.21 },
+        { "biome": "Temple", "chance": 0.21 }
+      ]
+    },
+	"Factory": {
+      "nextBiomes": [
+        { "biome": "Plains", "chance": 0.75 },
+        { "biome": "Laboratory", "chance": 0.25 }
+      ]
+    },
+	"Jungle": {
+      "nextBiomes": [
+        { "biome": "Temple", "chance": 1.00 }
+      ]
+    },
+	"Meadow": {
+      "nextBiomes": [
+        { "biome": "Plains", "chance": 0.50 },
+        { "biome": "Fairy Cave", "chance": 0.50 }
+      ]
+    },
+	"Badlands": {
+      "nextBiomes": [
+        { "biome": "Desert", "chance": 0.50 },
+        { "biome": "Mountain", "chance": 0.50 }
+      ]
+    },
+	"Seabed": {
+      "nextBiomes": [
+        { "biome": "Cave", "chance": 0.83 },
+        { "biome": "Volcano", "chance": 0.17 }
+      ]
+    },
+	"Abyss": {
+      "nextBiomes": [
+        { "biome": "Cave", "chance": 0.58 },
+        { "biome": "Space", "chance": 0.21 },
+        { "biome": "Wasteland", "chance": 0.21 }
+      ]
+    },
+	"Laboratory": {
+      "nextBiomes": [
+        { "biome": "Construction Site", "chance": 1.00 }
+      ]
+    },
+	"Temple": {
+      "nextBiomes": [
+        { "biome": "Desert", "chance": 0.58 },
+        { "biome": "Swamp", "chance": 0.21 },
+        { "biome": "Ancient Ruins", "chance": 0.21 }
+      ]
+    },
+	"Ancient Ruins": {
+      "nextBiomes": [
+        { "biome": "Mountain", "chance": 0.75 },
+        { "biome": "Forest", "chance": 0.25 }
+      ]
+    },
+	"Desert": {
+      "nextBiomes": [
+        { "biome": "Ancient Ruins", "chance": 0.75 },
+        { "biome": "Construction Site", "chance": 0.25 }
+      ]
+    },
+	"Mountain": {
+      "nextBiomes": [
+        { "biome": "Volcano", "chance": 0.64 },
+        { "biome": "Wasteland", "chance": 0.22 },
+        { "biome": "Space", "chance": 0.14 }
+      ]
+    },
+	"Fairy Cave": {
+      "nextBiomes": [
+        { "biome": "Ice Cave", "chance": 0.75 },
+        { "biome": "Space", "chance": 0.25 }
+      ]
+    },
+	"Ice Cave": {
+      "nextBiomes": [
+        { "biome": "Snowy Forest", "chance": 1.00 }
+      ]
+    },
+	"Volcano": {
+      "nextBiomes": [
+        { "biome": "Beach", "chance": 0.83 },
+        { "biome": "Ice Cave", "chance": 0.17 }
+      ]
+    },
+	"Wasteland": {
+      "nextBiomes": [
+        { "biome": "Badlands", "chance": 1.00 }
+      ]
+    },
+	"Space": {
+      "nextBiomes": [
+        { "biome": "Ancient Ruins", "chance": 1.00 }
+      ]
+    },
+	"Snowy Forest": {
+      "nextBiomes": [
+        { "biome": "Forest", "chance": 0.58 },
+        { "biome": "Mountain", "chance": 0.21 },
+        { "biome": "Lake", "chance": 0.21 }
+      ]
+    }
+  }
+}

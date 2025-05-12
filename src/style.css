@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+}
+
+.left-panel, .right-panel {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.left-panel {
+  flex: 1;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.right-panel {
+  flex: 2;
+}
+
+.biome-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.next-biome {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.next-biome img {
+  margin-right: 10px;
+}
+
+.widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 9999;
+}
